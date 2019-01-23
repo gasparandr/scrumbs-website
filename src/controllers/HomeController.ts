@@ -25,7 +25,7 @@ class HomeController {
 
     public home(req: Request, res: Response, next: NextFunction) {
 
-        res.render( "home" );
+        res.render( "index", { title: "Something fun." } );
 
     }
 

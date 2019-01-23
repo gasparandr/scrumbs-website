@@ -7,7 +7,7 @@ import * as compression from "compression";
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as cors from "cors";
-import * as ejs from "ejs";
+import * as hbs from "express-handlebars";
 
 
 const publicPath = __dirname.substr( 0, __dirname.indexOf( "build" ) ) + "public";
@@ -28,7 +28,8 @@ class Server {
 
     public config() {
 
-        this.app.set( "view engine", "ejs" );
+        this.app.engine( "hbs", hbs( { extname: "hbs", defaultLayout: "layout", layoutsDir: __dirname + "/../views/layouts" } ) );
+        this.app.set( "view engine", "hbs" );
 
         this.app.use( "*/public", express.static( publicPath ) );
 
