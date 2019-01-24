@@ -31,7 +31,7 @@ subscribeBtn.addEventListener( "click", () => {
 
         httpRequest(
             "POST",
-            "/subscribe",
+            "http://localhost:3000/subscriptions/subscribe",
             {
                 name,
                 email
@@ -117,7 +117,7 @@ function httpRequest(method, endpoint, data, success, failure) {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open( method, SERVICE_URL + endpoint, true );
+    xhr.open( method, endpoint, true );
     xhr.setRequestHeader( "Content-type", "application/json");
     xhr.setRequestHeader( "Accept", "application/json" );
 

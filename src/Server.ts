@@ -8,14 +8,24 @@ import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as cors from "cors";
 import * as hbs from "express-handlebars";
+import SubscriptionController from "./controllers/SubscriptionController";
+import * as mongoose from "mongoose";
 
 
 const publicPath = __dirname.substr( 0, __dirname.indexOf( "build" ) ) + "public";
 
 
+
+
+
+
 class Server {
 
     public app: express.Application;
+
+
+
+
 
     constructor() {
         this.app = express();
@@ -28,6 +38,11 @@ class Server {
 
 
     public config() {
+
+        const MONGO_URI = "mongodb://localhost/scrumbs-website";
+
+        mongoose.set( "useCreateIndex", true );
+        mongoose.connect( MONGO_URI || process.env.MONGODB_URI, { useNewUrlParser: true } );
 
         this.app.engine( "hbs", hbs( { extname: "hbs", defaultLayout: "layout", layoutsDir: __dirname + "/../views/layouts" } ) );
         this.app.set( "view engine", "hbs" );
@@ -48,6 +63,7 @@ class Server {
     public routes() {
 
         this.app.use( '/', PageController );
+        this.app.use( '/subscriptions', SubscriptionController );
 
     }
 
