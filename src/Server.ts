@@ -1,5 +1,5 @@
 
-import HomeController from "./controllers/HomeController";
+import PageController from "./controllers/PageController";
 
 require( "dotenv" ).config();
 
@@ -22,6 +22,7 @@ class Server {
         this.config();
         this.routes();
         this.errors();
+        this.error404();
     }
 
 
@@ -46,14 +47,23 @@ class Server {
 
     public routes() {
 
-        this.app.use( '/', HomeController );
+        this.app.use( '/', PageController );
+
     }
 
 
 
     public errors() {
         this.app.use( (err, req, res, next) => {
-            res.status( 422 ).json( { success: false, message: err.message } );
+            res.status( 422 ).json( { success: false, message: err.message, code: err.statusCode } );
+        });
+    }
+
+
+
+    public error404() {
+        this.app.use( '*', (req, res, next) => {
+            res.render( "404", { title: "Scrumbs | Page Not Found" } );
         });
     }
 
