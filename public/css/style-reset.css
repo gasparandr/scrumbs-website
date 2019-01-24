@@ -36,6 +36,10 @@ footer,header,hgroup,menu,nav,section {
     display:block;
 }
 
+ol {
+    list-style-position: inside;
+}
+
 nav ul {
     list-style:none;
 }
@@ -56,6 +60,8 @@ a {
     font-size:100%;
     vertical-align:baseline;
     background:transparent;
+    color:inherit;
+    text-decoration: none; /* no underline */
 }
 
 /* change colours to suit your needs */
@@ -99,4 +105,8 @@ hr {
 
 input, select {
     vertical-align:middle;
+}
+
+input:focus {
+    outline: none;
 }

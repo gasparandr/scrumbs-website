@@ -32,7 +32,7 @@ class Server {
         this.app.set( "view engine", "hbs" );
 
         this.app.use( "*/public", express.static( publicPath ) );
-
+        this.app.use( "/favicon.ico", express.static( publicPath + "/images/favicon.ico" ) );
 
         this.app.use( bodyParser.urlencoded( { extended: true } ) );
         this.app.use( bodyParser.json() );
