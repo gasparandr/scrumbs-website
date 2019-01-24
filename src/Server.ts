@@ -39,7 +39,7 @@ class Server {
 
     public config() {
 
-        const MONGO_URI = "mongodb://localhost/scrumbs-website";
+        const MONGO_URI = "mongodb://mongo:27017/scrumbs-website";
 
         mongoose.set( "useCreateIndex", true );
         mongoose.connect( MONGO_URI || process.env.MONGODB_URI, { useNewUrlParser: true } );
